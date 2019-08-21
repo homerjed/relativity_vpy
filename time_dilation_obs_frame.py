@@ -49,11 +49,11 @@ clock3 = light_clock(vector(3,-1,0))
 t=0
 dt = 0.00001
 v = 0.0001
-clock_velocity = vector(v,0,0)
+clock_velocity = vector(2*v,0,0)
 
-clock1.pho.velocity = vector(0,5*v,0)
-clock2.pho.velocity = vector(0,5*v,0)
-clock3.pho.velocity = vector(0,5*v,0)
+clock1.pho.velocity = vector(0,2*v,0)
+clock2.pho.velocity = vector(0,2*v,0)
+clock3.pho.velocity = vector(0,2*v,0)
 clock1.pho.mass = 0.25
 clock2.pho.mass = 0.25
 clock3.pho.mass = 0.25
@@ -63,7 +63,7 @@ clock2.pho.p = clock2.pho.velocity*clock2.pho.mass
 clock3.pho.p = clock3.pho.velocity*clock3.pho.mass
 
 # contraction
-gamma = 1/sqrt(0.2)
+gamma = 1/sqrt(1-(1000*v)**2)
 
 clock1.L = clock1.L*gamma
 
@@ -86,10 +86,9 @@ while t < 10000:
     clock3.pho.color = color.magenta
 
     if not (clock2.bottom.pos.y + clock2.pho.radius) < clock2.pho.pos.y < (clock2.top.pos.y - clock2.pho.radius):
-        clock2.pho.p.y = -clock2.pho.p.y  
+        clock2.pho.p.y = -clock2.pho.p.y
 
     if not (clock3.bottom.pos.y + clock3.pho.radius) < clock3.pho.pos.y < (clock3.top.pos.y - clock3.pho.radius):
         clock3.pho.p.y = -clock3.pho.p.y 
-
 
     t += dt

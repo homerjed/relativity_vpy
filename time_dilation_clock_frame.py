@@ -49,15 +49,15 @@ clock3 = light_clock(vector(5,-1,0))
 t=0
 dt = 0.00001
 v = 0.0001
-clock_velocity = vector(-v,0,0)
+clock_velocity = vector(-2*v,0,0)
 observer_velocity = vector(-v,0,0)
 
 # contraction
-gamma = 1/sqrt(1.0-v**2)
+gamma = 1/sqrt(1.0-0.9**2)
 
-clock1.pho.velocity = vector(0,5*v,0)
-clock2.pho.velocity = vector(0,5*v,0)
-clock3.pho.velocity = vector(0,5*v,0)
+clock1.pho.velocity = vector(0,2*v,0)
+clock2.pho.velocity = vector(0,2*v,0)
+clock3.pho.velocity = vector(0,2*v,0)
 clock1.pho.mass = 0.25
 clock2.pho.mass = 0.25
 clock3.pho.mass = 0.25
@@ -81,10 +81,8 @@ while t < 10000:
     for objekt in clock3.obj:
         objekt.pos += clock_velocity*t
         
-
     if not (clock1.bottom.pos.y + clock1.pho.radius) < clock1.pho.pos.y < (clock1.top.pos.y - clock1.pho.radius):
         clock1.pho.p.y = -clock1.pho.p.y    
-
 
     # stationary clocks
     clock2.pho.pos += clock2.pho.p*t/clock2.pho.mass
